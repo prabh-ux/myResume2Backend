@@ -4,7 +4,12 @@ import newsLetterRoute from './routes/newsLetterRoutes.js';
 const app=express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin:[
+         "http://localhost:5173",
+         "https://prabhkiratsinghresume.vercel.app"   
+    ]
+}));
 
 app.use('/newsletter',newsLetterRoute);
 
