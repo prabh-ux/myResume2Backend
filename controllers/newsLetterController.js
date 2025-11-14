@@ -41,10 +41,8 @@ export const sendClientInfo = async (req, res) => {
         const resend = new Resend(process.env.RESEND_API_KEY);
 
        const response= await resend.emails.send({
-            from: "Prabhkirat Singh <no-reply@resend.dev>",
+            from: "Prabhkirat Singh <onboarding@resend.dev>",
             to: process.env.EMAIL,
-              reply_to: process.env.EMAIL,
-
             subject: `New message from your resume website - ${name}`,
             html: `
         <div style="font-family: Arial, sans-serif; padding: 10px;">
