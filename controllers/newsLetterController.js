@@ -40,7 +40,7 @@ export const sendClientInfo = async (req, res) => {
 
         const resend = new Resend(process.env.RESEND_API_KEY);
 
-        await resend.emails.send({
+       const response= await resend.emails.send({
             from: "Prabhkirat Singh <no-reply@resend.dev>",
             to: process.env.EMAIL,
               reply_to: process.env.EMAIL,
@@ -67,6 +67,7 @@ export const sendClientInfo = async (req, res) => {
 
         })
 
+    console.log(response); // log API response for debugging
 
         res.status(200).json({ msg: "mail successfully sent" });
     } catch (error) {
