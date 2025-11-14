@@ -7,6 +7,9 @@ export const sendClientInfo = async (req, res) => {
         const transporter = nodemailer.createTransport({
 
             service: "gmail",
+            host: "smtp.gmail.com",
+            port: 465,
+            secure: true,
             auth: {
                 user: userEmail,
                 pass: process.env.EMAILPASS
@@ -17,7 +20,7 @@ export const sendClientInfo = async (req, res) => {
         const mailOptions = {
             from: userEmail,
             to: userEmail,
-            replyto: userEmail,
+            replyTo: userEmail,
             subject: "A new client has sended a message for you from your resume website"
             , text: `You have a new message from a client with name ${name} and this is there message 
             ${message}`
@@ -28,7 +31,7 @@ export const sendClientInfo = async (req, res) => {
                 if (err) {
                     console.log(err);
                     reject(err);
-                }else{
+                } else {
                     resolve(info);
                 }
             });
