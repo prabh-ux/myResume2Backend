@@ -18,13 +18,22 @@ export const sendClientInfo = async (req, res) => {
             from: userEmail,
             to: userEmail,
             replyto: userEmail,
-            subject:"A new client has sended a message for you from your resume website"
-            ,text:`You have a new message from a client with name ${name} and this is there message 
+            subject: "A new client has sended a message for you from your resume website"
+            , text: `You have a new message from a client with name ${name} and this is there message 
             ${message}`
 
         }
+        await new Promise((resolve, reject) => {
+            transporter.sendMail(mailOptions, (err, info) => {
+                if (err) {
+                    console.log(err);
+                    reject(err);
+                }else{
+                    resolve(info);
+                }
+            });
+        })
 
-        await transporter.sendMail(mailOptions);
 
         res.status(200).json({ msg: "mail successfully sent" });
     } catch (error) {
